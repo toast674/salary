@@ -24,4 +24,8 @@ class TimeSheet extends Authenticatable
         'work_end',
     ];
 
+    public function staff() {
+        return  $this->belongsTo('App\Staff');
+    }
+
 }
