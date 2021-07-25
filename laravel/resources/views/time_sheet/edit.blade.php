@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>赤い屋根</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-
+        @include('layout.header')
     </head>
-    <body class="main">
+    <body class="container">
         {{ Form::open(['url' => ['/time_sheets/update']]) }}
         @csrf
-        <div>
-            <input type="hidden" value={{ $time_sheet->id }} name="id">
-            <input type="hidden" value={{ $staff->id }} name="staff_id">
-            <h1>出退勤編集画面</h1>
-            <p>{{ $staff->name }}</p>
-            {{ Form::date('workday', $time_sheet->workday) }}
-        </div>
+        <h1 class="text-center">出退勤編集画面</h1>
+        <input type="hidden" value={{ $time_sheet->id }} name="id">
+        <input type="hidden" value={{ $staff->id }} name="staff_id">
+        <h2>{{ $staff->name }}</h2>
 
-        <div>   
+        <div class="form-group">
+            <label for="workday">日付</label>
+            {{ Form::date('workday', $time_sheet->workday, ['class' => 'form-control']) }}
+        </div>
+        
+        <div class="form-group">   
             <label for="work_start_time">出勤</label>
-            {{ Form::select('work_start_hour', $hour_array, $work_start_hour_i) }}
-            :
-            {{ Form::select('work_start_minute', $minute_array, $work_start_minute_i) }}
+            <div class="form-inline">     
+                <div>     
+                    {{ Form::select('work_start_hour', $hour_array, $work_start_hour_i, ['class' => 'form-control']) }}
+                </div>
+                <div>     
+                    :
+                </div>
+                <div>   
+                    {{ Form::select('work_start_minute', $minute_array, $work_start_minute_i, ['class' => 'form-control']) }}
+                </div>
+            </div>
         </div>
 
-        <div>
-            <label for="work_end_time">退勤</label>
-            {{ Form::select('work_end_hour', $hour_array, $work_end_hour_i) }}
-            :
-            {{ Form::select('work_end_minute', $minute_array, $work_end_minute_i) }}
+        <label for="work_end_time">退勤</label>
+            <div class="form-inline">
+                <div>     
+                    {{ Form::select('work_end_hour', $hour_array, $work_end_hour_i, ['class' => 'form-control']) }}
+                </div>
+                <div>     
+                    :
+                </div>
+                <div>   
+                {{ Form::select('work_end_minute', $minute_array, $work_end_minute_i, ['class' => 'form-control']) }}
+                </div>
+            </div>
         </div>
 
-        {{ Form::submit('編集', ['name' => 'regist', 'class' => 'btn btn-success btn-lg']) }}
+        {{ Form::submit('編集', ['name' => 'regist', 'class' => 'btn btn-success btn-lg form-control mt-5']) }}
         {{ Form::close() }}
     </body>
 </html>

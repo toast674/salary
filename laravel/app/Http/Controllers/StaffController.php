@@ -18,14 +18,14 @@ class StaffController extends BaseController
         return view('index', compact('staffs'));
     }
 
-    public function store() {
+    public function store(Request $request) {
         $staff = Staff::create([
             'name' => $request->name,
             'hourly_wage' => $request->hourly_wage,
         ]);
 
         if($staff) {
-            return redirect()->route('staff.detail', ['id' => $request->staff_id])->with('flash_message', '登録しました');
+            return redirect()->route('staff.index', ['id' => $staff->id])->with('flash_message', '登録しました');
         }
     }
 
@@ -59,7 +59,8 @@ class StaffController extends BaseController
     }
 
     public function delete($staff_id) {
-        if($time_sheet->delete()) {
+        $staff = Staff::find($staff_id);
+        if($staff->delete()) {
             return redirect()->route('staff.index', ['id' => $staff_id])->with('flash_message', '削除しました');
         }
         return false;   

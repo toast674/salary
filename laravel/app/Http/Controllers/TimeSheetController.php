@@ -28,9 +28,11 @@ class TimeSheetController extends BaseController
     }
 
     public function create(Request $request) {
+        $hour_array = $this->getHourArray();
+        $minute_array = $this->getMinuteArray();
         $staff_id = $request->input('id');
         $staff = Staff::find($staff_id);
-        return view('time_sheet.create', compact('staff'));
+        return view('time_sheet.create', compact('staff', 'hour_array', 'minute_array'));
     }
 
     public function store(Request $request) {
