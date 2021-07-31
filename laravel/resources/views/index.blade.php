@@ -10,6 +10,7 @@
           <thead>
             <tr>
               <th scope="col">スタッフ名</th>
+              <th scope="col">オプション</th>
             </tr>
           </thead>
           <tbody>
@@ -19,7 +20,7 @@
             <tr>
               <td>{{ $staff->name }}</td>
               <td> 
-                <button type="button" onclick="location.href = '<?php echo route('staff.detail', ['id' => $staff->id]); ?>'" class="btn btn-sm btn-primary">日報</button>
+                <button type="button" onclick="location.href = '<?php echo route('staff.detail', ['id' => $staff->id]); ?>'" class="btn btn-sm btn-primary">勤務一覧</button>
                 <button type="button" onclick="location.href = '<?php echo route('staff.edit', ['id' => $staff->id]); ?>'" class="btn btn-sm btn-primary">修正</button>
                 <input type="submit" value="削除" class="btn btn-sm btn-danger btn-dell">
               </td>

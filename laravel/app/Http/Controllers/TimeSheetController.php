@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Staff;
 use App\Models\TimeSheet;
+use App\Http\Requests\timeSheetRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,7 @@ class TimeSheetController extends BaseController
         return view('time_sheet.create', compact('staff', 'hour_array', 'minute_array'));
     }
 
-    public function store(Request $request) {
+    public function store(timeSheetRequest $request) {
         $work_start = $this->ConvertStringToTime($request->work_start_hour, $request->work_start_minute);
         $work_end = $this->ConvertStringToTime($request->work_end_hour, $request->work_end_minute);
         $work_hour = $this->getWorkHour($request);
