@@ -9,6 +9,11 @@
         <input type="hidden" value={{ $staff->id }} name="staff_id">
         <h1 class="text-center">出退勤登録画面</h1>
         <h2>{{ $staff->name }}</h2>
+
+        @foreach ($errors->all() as $error)
+            <p style="color: red;">{{$error}}</p>
+        @endforeach
+
         <div class="form-group">
             <label for="workday">日付</label>
             {{ Form::date('workday', null, ['class' => 'form-control']) }}

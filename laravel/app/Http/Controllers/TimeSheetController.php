@@ -54,7 +54,7 @@ class TimeSheetController extends BaseController
         }
     }
 
-    public function update(Request $request) {
+    public function update(timeSheetRequest $request) {
         $work_start = $this->ConvertStringToTime($request->work_start_hour, $request->work_start_minute);
         $work_end = $this->ConvertStringToTime($request->work_end_hour, $request->work_end_minute);
         $work_hour = $this->getWorkHour($request);
