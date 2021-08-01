@@ -33,7 +33,8 @@ class TimeSheetController extends BaseController
         $minute_array = $this->getMinuteArray();
         $staff_id = $request->input('id');
         $staff = Staff::find($staff_id);
-        return view('time_sheet.create', compact('staff', 'hour_array', 'minute_array'));
+        $today = Carbon::today();
+        return view('time_sheet.create', compact('staff', 'hour_array', 'minute_array', 'today'));
     }
 
     public function store(timeSheetRequest $request) {

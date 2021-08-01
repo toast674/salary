@@ -16,7 +16,7 @@
 
         <div class="form-group">
             <label for="workday">日付</label>
-            {{ Form::date('workday', null, ['class' => 'form-control']) }}
+            {{ Form::date('workday', $today, ['class' => 'form-control']) }}
         </div>
 
         <div class="form-group">   
