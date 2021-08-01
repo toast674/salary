@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\Http\Requests\staffRequest;
 use App\Models\Staff;
 use App\Models\TimeSheet;
 class StaffController extends BaseController
@@ -18,7 +19,11 @@ class StaffController extends BaseController
         return view('index', compact('staffs'));
     }
 
-    public function store(Request $request) {
+    public function create() {
+        return view('staff/create');
+    }
+
+    public function store(staffRequest $request) {
         $staff = Staff::create([
             'name' => $request->name,
             'hourly_wage' => $request->hourly_wage,
@@ -39,7 +44,7 @@ class StaffController extends BaseController
         return view('staff/edit', compact('staff'));
     }
 
-    public function update(Request $request) {
+    public function update(staffRequest $request) {
         $data = [
             'id' => $request->staff_id,
             'name' => $request->name,
@@ -52,10 +57,6 @@ class StaffController extends BaseController
             return redirect()->route('staff.index', ['id' => $request->staff_id])->with('flash_message', '更新しました');
         }
         return false;
-    }
-    
-    public function create() {
-        return view('staff/create');
     }
 
     public function delete($staff_id) {
