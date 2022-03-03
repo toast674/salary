@@ -29,11 +29,15 @@ class TimeSheetController extends BaseController
     }
 
     public function create(Request $request) {
+        $TimeSheet = new TimeSheet();
+        $today = Carbon::today();
+
+        $time_sheets_month = $TimeSheet->getTimeSheetAsYearMonth($today->year, $today->month);
         $hour_array = $this->getHourArray();
         $minute_array = $this->getMinuteArray();
         $staff_id = $request->input('id');
         $staff = Staff::find($staff_id);
-        $today = Carbon::today();
+
         return view('time_sheet.create', compact('staff', 'hour_array', 'minute_array', 'today'));
     }
 
@@ -81,7 +85,6 @@ class TimeSheetController extends BaseController
     }
 
     private function getWorkHour($request) {
-
         $workday_arr = explode('-', $request->workday);
 
         $start_year = $workday_arr[0];

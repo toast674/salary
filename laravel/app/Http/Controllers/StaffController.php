@@ -36,7 +36,9 @@ class StaffController extends BaseController
 
     public function detail($staff_id) {
         $staff = Staff::find($staff_id);
-        return view('staff/detail', compact('staff'));
+        //　ページネーション機能をtime_sheetsに使うため、あえてstaffに紐づく$time_sheetsを取得し直す
+        $time_sheets = TimeSheet::where('staff_id',$staff_id)->paginate(3);
+        return view('staff/detail', compact('staff', 'time_sheets'));
     }
 
     public function edit($staff_id) {
