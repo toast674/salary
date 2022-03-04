@@ -50,6 +50,7 @@
                   @endforeach
                 </tbody>
               </table>
+              {{ $time_sheets->links() }}
 `            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='<?php echo route('time_sheet.create', ['id' => $staff->id]); ?>'">追加</button>
 `            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='<?php echo route('staff.index'); ?>'">スタッフ一覧に戻る</button>
         </div>
