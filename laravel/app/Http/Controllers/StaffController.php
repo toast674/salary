@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\staffRequest;
 use App\Models\Staff;
 use App\Models\TimeSheet;
+use Illuminate\Support\Facades\Config;
 class StaffController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -34,13 +35,21 @@ class StaffController extends BaseController
         }
     }
 
-    public function detail($staff_id) {
+    public function detail(Request $request, $staff_id) {
         $staff = Staff::find($staff_id);
+        $now_year = $request->input('year');
+        $now_month = $request->input('month');
+
+        if(!($now_year && $now_month)) {
+            $now_year = date('Y');
+            $now_month = date('n');
+        }
+
         //　ページネーション機能をtime_sheetsに使うため、あえてstaffに紐づく$time_sheetsを取得し直す
-        $time_sheets = TimeSheet::where('staff_id',$staff_id);
-        $perPage = $time_sheets->count();
+        $time_sheets = TimeSheet::where('staff_id',$staff_id)->whereYear('workday', $now_year)->whereMonth('workday', $now_month);
         $time_sheets = $time_sheets->paginate(10);
-        return view('staff/detail', compact('staff', 'time_sheets'));
+
+        return view('staff/detail', compact('staff', 'time_sheets', 'now_year', 'now_month'));
     }
 
     public function edit($staff_id) {
@@ -69,5 +78,16 @@ class StaffController extends BaseController
             return redirect()->route('staff.index', ['id' => $staff_id])->with('flash_message', '削除しました');
         }
         return false;   
+    }
+
+    public function timesheets_search(Request $request, $staff_id) {
+
+        $staff = Staff::find($staff_id);
+        $now_year = $request->input('year');
+        $now_month = $request->input('month');
+        $time_sheets = TimeSheet::where('staff_id',$staff_id)->whereYear('workday', $now_year)->whereMonth('workday', $now_month);
+        $time_sheets = $time_sheets->paginate(10);
+
+        return view('staff/detail', compact('staff', 'time_sheets', 'now_year', 'now_month'));        
     }
 }
