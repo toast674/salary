@@ -17,7 +17,7 @@
             <h1>{{ $staff->name }}の勤務情報</h1>
 			<form method="POST" action='<?php echo route('staff.detail', ['id' => $staff->id]); ?>'>
 				@csrf
-				<div class="row">
+				<div class="row mb-2">
 					<div class="col-auto">
 						{{ Form::select('year', config('const.YEAR_LIST'), $now_year, ['class' => 'form-control']) }}
 					</div>
@@ -27,14 +27,14 @@
 					<div class="col-auto">
 						{{ Form::select('month', config('const.MONTH_LIST'), $now_month, ['class' => 'form-control'])}}
 					</div>
-					<div>
+					<div >
 						月
 					</div>
-					<div>
-						<button type="submit" class="btn btn-primary btn-sm">検索</button>
+					<div class="col-auto">
+						<button type="submit" class="btn btn-success btn-s">検索</button>
 					</div>
-					<div>
-						<button type="button" class="btn btn-primary btn-sm text-right" onclick="location.href='<?php echo route('time_sheet.create', ['id' => $staff->id]); ?>'">新規登録</button>
+					<div class="col text-right">
+						<button type="button" class="btn btn-primary btn-s" onclick="location.href='<?php echo route('time_sheet.create', ['id' => $staff->id]); ?>'">新規登録</button>
 					</div>
 				</div>
 			</form>
@@ -64,8 +64,8 @@
                             <td>{{ $time_sheet->work_hour }}</td>
                             {{ Form::open(['url' => ['/time_sheets/delete/'. $time_sheet->id], 'name' => 'del']) }}
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '<?php echo route('time_sheet.edit', ['id' => $time_sheet->id]); ?>'">修正</button>
-                                <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
+                                <button type="button" class="btn btn-success btn-s" onclick="location.href = '<?php echo route('time_sheet.edit', ['id' => $time_sheet->id]); ?>'">修正</button>
+                                <input type="submit" value="削除" class="btn btn-danger btn-s btn-dell">
                             </td>
                             @csrf
                             {{ Form::close() }}
@@ -73,13 +73,15 @@
                     @endforeach
                 </tbody>
             </table>
-            <div>
-                合計: {{ $total_work_hour }} 時間  {{ $total_month_sulary }}  円
+            <div class="text-right">
+                合計: <b>{{ $total_work_hour }}</b> 時間  <b>{{ $total_month_sulary }}</b>  円
             </div>
             <div class="d-flex justify-content-center">
                 {{ $time_sheets->links() }}
 			</div>
-            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='<?php echo route('staff.index'); ?>'">スタッフ一覧に戻る</button>
+            <div class="text-right mb-3">
+                <button type="button" class="btn btn-primary btn-s" onclick="location.href='<?php echo route('staff.index'); ?>'">スタッフ一覧に戻る</button>
+            </div>
         </div>
     </body>
 </html>
