@@ -40,6 +40,7 @@ class StaffController extends BaseController
         $now_year = $request->input('year');
         $now_month = $request->input('month');
 
+        // 初期表示用
         if(!($now_year && $now_month)) {
             $now_year = date('Y');
             $now_month = date('n');
@@ -47,9 +48,12 @@ class StaffController extends BaseController
 
         //　ページネーション機能をtime_sheetsに使うため、あえてstaffに紐づく$time_sheetsを取得し直す
         $time_sheets = TimeSheet::where('staff_id',$staff_id)->whereYear('workday', $now_year)->whereMonth('workday', $now_month);
+        $total_work_hour = $time_sheets->sum('work_hour');
+
+        $total_month_sulary = $total_work_hour * $staff->hourly_wage;
         $time_sheets = $time_sheets->paginate(10);
 
-        return view('staff/detail', compact('staff', 'time_sheets', 'now_year', 'now_month'));
+        return view('staff/detail', compact('staff', 'time_sheets', 'now_year', 'now_month', 'total_work_hour', 'total_month_sulary' ));
     }
 
     public function edit($staff_id) {
@@ -80,14 +84,14 @@ class StaffController extends BaseController
         return false;   
     }
 
-    public function timesheets_search(Request $request, $staff_id) {
+    // public function timesheets_search(Request $request, $staff_id) {
 
-        $staff = Staff::find($staff_id);
-        $now_year = $request->input('year');
-        $now_month = $request->input('month');
-        $time_sheets = TimeSheet::where('staff_id',$staff_id)->whereYear('workday', $now_year)->whereMonth('workday', $now_month);
-        $time_sheets = $time_sheets->paginate(10);
+    //     $staff = Staff::find($staff_id);
+    //     $now_year = $request->input('year');
+    //     $now_month = $request->input('month');
+    //     $time_sheets = TimeSheet::where('staff_id',$staff_id)->whereYear('workday', $now_year)->whereMonth('workday', $now_month);
+    //     $time_sheets = $time_sheets->paginate(10);
 
-        return view('staff/detail', compact('staff', 'time_sheets', 'now_year', 'now_month'));        
-    }
+    //     return view('staff/detail', compact('staff', 'time_sheets', 'now_year', 'now_month'));        
+    // }
 }

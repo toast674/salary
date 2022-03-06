@@ -15,7 +15,7 @@
     <body class="main">
         <div class="container">
             <h1>{{ $staff->name }}の勤務情報</h1>
-			<form method="POST" action='<?php echo route('staff.timesheets_search', ['id' => $staff->id]); ?>'>
+			<form method="POST" action='<?php echo route('staff.detail', ['id' => $staff->id]); ?>'>
 				@csrf
 				<div class="row">
 					<div class="col-auto">
@@ -73,6 +73,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div>
+                合計: {{ $total_work_hour }} 時間  {{ $total_month_sulary }}  円
+            </div>
             <div class="d-flex justify-content-center">
                 {{ $time_sheets->links() }}
 			</div>

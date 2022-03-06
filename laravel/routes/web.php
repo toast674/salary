@@ -22,13 +22,13 @@ use App\Http\Controllers\TimeSheetController;
 
 Route::get('/', [StaffController::class, 'index'])->name('staff.index');
 Route::get('/staffs/detail/{id}', [StaffController::class, 'detail'])->name('staff.detail');
+Route::post('/staffs/detail/{id}', [StaffController::class, 'detail'])->name('staff.detail');
 
 Route::get('/staffs', [StaffController::class, 'create'])->name('staff.create');
 Route::post('/staffs/store', [StaffController::class, 'store'])->name('staff.store');
 Route::post('/staffs/update', [StaffController::class, 'update'])->name('staff.update');
 Route::post('/staffs/delete/{id}', [StaffController::class, 'delete'])->name('staff.delete');
 Route::get('/staffs/{id}', [StaffController::class, 'edit'])->name('staff.edit');
-Route::post('/staffs/timesheets_search/{id}', [StaffController::class, 'timesheets_search'])->name('staff.timesheets_search');
 
 Route::get('/time_sheets', [TimeSheetController::class, 'create'])->name('time_sheet.create');
 Route::post('/time_sheets/store', [TimeSheetController::class, 'store'])->name('time_sheet.store');
