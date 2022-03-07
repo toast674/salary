@@ -20,17 +20,18 @@
             <tr>
               <td>{{ $staff->name }}</td>
               <td> 
-                <button type="button" onclick="location.href = '<?php echo route('staff.detail', ['id' => $staff->id]); ?>'" class="btn btn-sm btn-primary">勤務一覧</button>
-                <button type="button" onclick="location.href = '<?php echo route('staff.edit', ['id' => $staff->id]); ?>'" class="btn btn-sm btn-primary">修正</button>
-                <input type="submit" value="削除" class="btn btn-sm btn-danger btn-dell">
+                <button type="button" onclick="location.href = '<?php echo route('staff.detail', ['id' => $staff->id]); ?>'" class="btn btn-s btn-primary">勤務一覧</button>
+                <button type="button" onclick="location.href = '<?php echo route('staff.edit', ['id' => $staff->id]); ?>'" class="btn btn-s btn-success">修正</button>
+                <input type="submit" value="削除" class="btn btn-s btn-danger btn-dell">
               </td>
             </tr>
             {{ Form::close() }}
             @endforeach
           </tbody>
         </table>
-
-        <button onclick="location.href = '<?php echo route('staff.create'); ?>'" class="btn btn-sm btn-primary">スタッフ追加</button>
+        <div class="text-center">
+          <button onclick="location.href = '<?php echo route('staff.create'); ?>'" class="btn btn-s btn-primary">スタッフ追加</button>
+        </div>
       </div>
     </body>
 </html>

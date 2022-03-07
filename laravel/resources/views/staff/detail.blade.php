@@ -34,7 +34,7 @@
 						<button type="submit" class="btn btn-success btn-s">検索</button>
 					</div>
 					<div class="col text-right">
-						<button type="button" class="btn btn-primary btn-s" onclick="location.href='<?php echo route('time_sheet.create', ['id' => $staff->id]); ?>'">新規登録</button>
+						<button type="button" class="btn btn-primary btn-s" onclick="location.href='<?php echo route('time_sheet.create', ['id' => $staff->id]); ?>'">登録</button>
 					</div>
 				</div>
 			</form>

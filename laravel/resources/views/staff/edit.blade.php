@@ -13,27 +13,34 @@
         <script src="{{ asset('js/app.js') }}"></script>
     </head>
     <body class="container">
-        <h1>スタッフ編集</h1>
+        <div>
+            <h1>スタッフ編集</h1>
+            {{ Form::open(['url' => ['/staffs/update']]) }}
+            @csrf
 
-        {{ Form::open(['url' => ['/staffs/update']]) }}
-        @csrf
+            <div class="form-group">
+                <input type="hidden" value={{ $staff->id }} name="staff_id">
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label for="name">スタッフ名</label>
+                </div>
+                <div class="form-group col-8">
+                    {{Form::text('name', $staff->name, ['class' => 'form-control'])}}
+                </div>
+                <div class="form-group col-4">
+                    <label for="hourly_wage">時給</label>
+                </div>
+                <div class="form-group col-8">
+                    {{Form::number('hourly_wage', $staff->hourly_wage, ['class' => 'form-control'])}}
+                </div>
+            </div>
 
-        <div class="form-group">
-            <input type="hidden" value={{ $staff->id }} name="staff_id">
+            <div class="text-center">
+                {{ Form::submit('更新', ['name' => 'update', 'class' => 'btn btn-success btn-s']) }}
+            </div>
+            {{ Form::close() }}
         </div>
-
-        <div class="form-group">
-            <label for="name">スタッフ名</label>
-            {{Form::text('name', $staff->name, ['class' => 'form-control'])}}
-        </div>
-        
-        <div class="form-group">
-            <label for="hourly_wage">時給</label>
-            {{Form::number('hourly_wage', $staff->hourly_wage, ['class' => 'form-control'])}}
-        </div>
-
-        {{ Form::submit('更新', ['name' => 'update', 'class' => 'btn btn-success btn-sm']) }}
-        {{ Form::close() }}
     </body>
 </html>
 
