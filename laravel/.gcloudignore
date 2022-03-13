@@ -15,4 +15,4 @@
 
 # PHP Composer dependencies:
 /vendor/
-/node_mojules/
+/node_modules/
