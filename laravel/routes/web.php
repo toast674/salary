@@ -21,7 +21,7 @@ use App\Http\Controllers\TimeSheetController;
 // });
 
 Route::get('/', [StaffController::class, 'index'])->name('staff.index');
-Route::get('/staffs/detail/{id}', [StaffController::class, 'detail'])->name('staff.detail');
+Route::get('/staffs/detail/{id}', [StaffController::class, 'detail'])->name('staff.detail_post');
 Route::post('/staffs/detail/{id}', [StaffController::class, 'detail'])->name('staff.detail');
 
 Route::get('/staffs', [StaffController::class, 'create'])->name('staff.create');

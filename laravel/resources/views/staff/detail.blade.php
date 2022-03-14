@@ -15,7 +15,7 @@
     <body class="main">
         <div class="container">
             <h1>{{ $staff->name }}の勤務情報</h1>
-			<form method="POST" action='<?php echo route('staff.detail', ['id' => $staff->id]); ?>'>
+			<form method="POST" action='<?php echo route('staff.detail_post', ['id' => $staff->id]); ?>'>
 				@csrf
 				<div class="row mb-2">
 					<div class="col-auto">
