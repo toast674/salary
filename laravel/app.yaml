@@ -19,7 +19,7 @@ env_variables:
   CACHE_DRIVER: database
 
     ## Set these environment variables according to your CloudSQL configuration.
-  DB_DATABASE: 34.150.123.86
+  DB_DATABASE: salary
   DB_USERNAME: root
   DB_PASSWORD: 1036746t
   ## for MYSQL, use DB_SOCKET:
