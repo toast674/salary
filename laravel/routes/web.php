@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TimeSheetController;
+use App\Http\Middleware;
 
 
 /*
@@ -19,6 +20,7 @@ use App\Http\Controllers\TimeSheetController;
 // Route::get('/', function () {
 //     return view('index');
 // });
+Route::group(['middleware' => 'basicauth'], function(){
 
 Route::get('/', [StaffController::class, 'index'])->name('staff.index');
 Route::get('/staffs/detail/{id}', [StaffController::class, 'detail'])->name('staff.detail_post');
@@ -36,3 +38,4 @@ Route::post('/time_sheets/update', [TimeSheetController::class, 'update'])->name
 Route::post('/time_sheets/delete/{id}', [TimeSheetController::class, 'delete'])->name('time_sheet.delete');
 Route::get('/time_sheets/{id}', [TimeSheetController::class, 'edit'])->name('time_sheet.edit');
 
+});
