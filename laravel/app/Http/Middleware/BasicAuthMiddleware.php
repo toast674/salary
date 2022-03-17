@@ -19,7 +19,7 @@ class BasicAuthMiddleware
         $username = $request->getUser();
         $password = $request->getPassword();
     
-        if ($username == 'laraweb' && $password == 'laraweb') {
+        if ($username == 'akaiyane' && $password == 'akaiyane') {
             return $next($request);
         }
 
