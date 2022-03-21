@@ -6,7 +6,7 @@
     <body class="container">
         {{ Form::open(['url' => ['/time_sheets/update']]) }}
         @csrf
-        <h1 class="text-center">出退勤編集画面</h1>
+        <h1>出退勤編集</h1>
         <input type="hidden" value={{ $time_sheet->id }} name="id">
         <input type="hidden" value={{ $staff->id }} name="staff_id">
         <h2>{{ $staff->name }}</h2>
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        {{ Form::submit('編集', ['name' => 'regist', 'class' => 'btn btn-success btn-lg form-control mt-5']) }}
+        {{ Form::submit('更新', ['name' => 'regist', 'class' => 'btn btn-success btn-lg form-control mt-5']) }}
         {{ Form::close() }}
     </body>
 </html>

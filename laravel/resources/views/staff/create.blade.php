@@ -5,7 +5,7 @@
     </head>
     <body class="container">
         <div>
-            <h1>スタッフ登録画面</h1>
+            <h1>スタッフ登録</h1>
 
             @foreach ($errors->all() as $error)
                 <p style="color: red;">{{$error}}</p>
@@ -19,13 +19,13 @@
                     <label for="name">スタッフ名</label>
                 </div>
                 <div class="form-group col-8">
-                    {{Form::text('name', null, ['class' => 'form-control'])}}
+                    {{Form::text('name', null, ['class' => 'form-control', 'required' => 'required'])}}
                 </div>
                 <div class="form-group col-4">
                     <label for="hourly_wage">時給</label>
                 </div>
                 <div class="form-group col-8">
-                    {{Form::text('hourly_wage', null, ['class' => 'form-control'])}}
+                    {{Form::text('hourly_wage', null, ['class' => 'form-control', 'required' => 'required'])}}
                 </div>
             </div>
 

@@ -65,7 +65,6 @@ class StaffController extends BaseController
         $data = [
             'id' => $request->staff_id,
             'name' => $request->name,
-            'hourly_wage' => $request->hourly_wage,
         ];
 
         $staff = Staff::find($request->staff_id);

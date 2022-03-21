@@ -58,9 +58,10 @@
                 <tbody>
                     @foreach ($time_sheets as $time_sheet)
                         <tr>
-                            <td>{{ $time_sheet->workday }}</td>
-                            <td>{{ $time_sheet->work_start }}</td>
-                            <td>{{ $time_sheet->work_end }}</td>
+                            <?php $arr = explode(" ", $time_sheet->workday); ?>
+                            <td>{{ str_replace("-", "/", $arr[0]) }}</td>
+                            <td>{{ substr($time_sheet->work_start, 0, -3) }}</td>
+                            <td>{{ substr($time_sheet->work_end, 0, -3) }}</td>
                             <td>{{ $time_sheet->work_hour }}</td>
                             {{ Form::open(['url' => ['/time_sheets/delete/'. $time_sheet->id], 'name' => 'del']) }}
                             <td>

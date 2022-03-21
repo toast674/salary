@@ -25,7 +25,6 @@ class staffRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'hourly_wage' => 'required',
             //
         ];
     }
@@ -34,7 +33,6 @@ class staffRequest extends FormRequest
     {
         return [
             'name' => 'スタッフ名',
-            'hourly_wage' => '時給',
         ];
     }
 
@@ -42,7 +40,6 @@ class staffRequest extends FormRequest
     {
         return [
             'name.required' => ':attributeを入力してください',
-            'hourly_wage.required' => ':attributeを入力してください',
         ];
     }
 }

@@ -7,7 +7,7 @@
         {{ Form::open(['url' => ['/time_sheets/store']]) }}
         @csrf
         <input type="hidden" value={{ $staff->id }} name="staff_id">
-        <h1 class="text-center">出退勤登録画面</h1>
+        <h1>出退勤登録</h1>
         <h2>{{ $staff->name }}</h2>
 
         @foreach ($errors->all() as $error)
@@ -47,8 +47,11 @@
                 </div>
             </div>
         </div>
-
-        {{ Form::submit('登録', ['name' => 'regist', 'class' => 'btn btn-success btn-lg form-control mt-5']) }}
+        
+        <div class="text-center">
+            {{ Form::submit('登録', ['name' => 'regist', 'class' => 'btn btn-success btn-lg']) }}
+        </div>
+        
         {{ Form::close() }}
     </body>
 </html>

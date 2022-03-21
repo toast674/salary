@@ -26,13 +26,7 @@
                     <label for="name">スタッフ名</label>
                 </div>
                 <div class="form-group col-8">
-                    {{Form::text('name', $staff->name, ['class' => 'form-control'])}}
-                </div>
-                <div class="form-group col-4">
-                    <label for="hourly_wage">時給</label>
-                </div>
-                <div class="form-group col-8">
-                    {{Form::number('hourly_wage', $staff->hourly_wage, ['class' => 'form-control'])}}
+                    {{Form::text('name', $staff->name, ['class' => 'form-control', 'required' => 'required'])}}
                 </div>
             </div>
 
