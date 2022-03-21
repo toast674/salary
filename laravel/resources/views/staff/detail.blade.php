@@ -52,7 +52,7 @@
                         <th scope="col">出勤</th>
                         <th scope="col">退勤</th>
                         <th scope="col">時間</th>
-                        <th scope="col">修正・削除</th>
+                        <th scope="col">編集・削除</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +65,7 @@
                             <td>{{ $time_sheet->work_hour }}</td>
                             {{ Form::open(['url' => ['/time_sheets/delete/'. $time_sheet->id], 'name' => 'del']) }}
                             <td>
-                                <button type="button" class="btn btn-success btn-s" onclick="location.href = '<?php echo route('time_sheet.edit', ['id' => $time_sheet->id]); ?>'">修正</button>
+                                <button type="button" class="btn btn-success btn-s" onclick="location.href = '<?php echo route('time_sheet.edit', ['id' => $time_sheet->id]); ?>'">編集</button>
                                 <input type="submit" value="削除" class="btn btn-danger btn-s btn-dell">
                             </td>
                             @csrf

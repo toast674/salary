@@ -21,7 +21,7 @@
               <td>{{ $staff->name }}</td>
               <td> 
                 <button type="button" onclick="location.href = '<?php echo route('staff.detail', ['id' => $staff->id]); ?>'" class="btn btn-s btn-primary">勤務一覧</button>
-                <button type="button" onclick="location.href = '<?php echo route('staff.edit', ['id' => $staff->id]); ?>'" class="btn btn-s btn-success">修正</button>
+                <button type="button" onclick="location.href = '<?php echo route('staff.edit', ['id' => $staff->id]); ?>'" class="btn btn-s btn-success">編集</button>
                 <input type="submit" value="削除" class="btn btn-s btn-danger btn-dell">
               </td>
             </tr>
